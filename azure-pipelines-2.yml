@@ -28,8 +28,8 @@ stages:
         - task: AzurePowerShell@5
           inputs:
             azureSubscription: 'VS benoit.sautiere(448fc812-f122-47fd-b6dd-08917bda2d30)'
-            ScriptType: 'FilePath'
-            ScriptPath: 'Install-Module Az.Resources -RequiredVersion 1.12. -AllowPrerelease -Force -Scope CurrentUser'
+            ScriptType: 'InlineScript'
+            Inline: 'Install-Module Az.Resources -RequiredVersion 1.12. -AllowPrerelease -Force -Scope CurrentUser'
             azurePowerShellVersion: 'LatestVersion'
         - task: AzurePowerShell@5
           inputs:
