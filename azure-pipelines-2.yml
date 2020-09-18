@@ -25,6 +25,23 @@ stages:
             csmFile: '$(Build.SourcesDirectory)/azuredeploy.json'
             csmParametersFile: '$(Build.SourcesDirectory)/parameters.json'
             deploymentMode: 'Validation'
-        - task: PowerShell@2
+        - task: AzurePowerShell@5
           inputs:
-            filePath: 'Install-Module Az.Resources -RequiredVersion 1.12.1-preview -AllowPrerelease -Force -Scope CurrentUser'
+            azureSubscription: 'VS benoit.sautiere(448fc812-f122-47fd-b6dd-08917bda2d30)'
+            ScriptType: 'FilePath'
+            ScriptPath: 'Install-Module Az.Resources -RequiredVersion 1.12.1-preview -AllowPrerelease -Force -Scope CurrentUser'
+            azurePowerShellVersion: 'LatestVersion'
+        - task: AzurePowerShell@5
+          inputs:
+            azureSubscription: 'VS benoit.sautiere(448fc812-f122-47fd-b6dd-08917bda2d30)'
+            ScriptType: 'InlineScript'
+            Inline: |
+              $Parameters = @{
+                ResourcegroupName     = "ARMTemploymentTEst"
+                Templatefile          = ".\azuredeploy.json"
+                TemplateParameterfile = ".\parameters.json"
+                Mode                  = 'Incremental'
+               }
+              $Result = Get-AzResourceGroupDeploymentWhatIfResult @Parameters
+              $Result
+            azurePowerShellVersion: 'LatestVersion'
