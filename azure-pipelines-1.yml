@@ -22,6 +22,5 @@ stages:
             resourceGroupName: 'ARMTemploymentTEst'
             location: 'West Europe'
             templateLocation: 'Linked artifact'
-            csmFile: '$(Build.SourcesDirectory)/StorageAccount/azuredeploy.json'
-            csmParametersFile: '$(Build.SourcesDirectory)/StorageAccount/azuredeploy.parameters.json'
+            csmFile: '$(Build.SourcesDirectory)/azuredeploy.json'
             deploymentMode: 'Validation'
