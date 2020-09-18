@@ -10,7 +10,7 @@ Function Install-PowershellModule(
 [String]$Modulename,
 [String]$ModuleRequiredVersion    
 ) {
-    $ListModules = Get-installedmodule -Name $Modulename -RequiredVersion $ModuleRequiredVersion
+    $ListModules = Get-installedmodule -Name $Modulename -RequiredVersion $ModuleRequiredVersion -ErrorAction SilentlyContinue
     If ([string]::IsNullOrEmpty($ListModules)) {
         Write-Output "Powershell module $Modulename with version $ModuleRequiredVersion not yet installed."
         Install-Module $Modulename -RequiredVersion $ModuleRequiredVersion -Force -Scope CurrentUser
