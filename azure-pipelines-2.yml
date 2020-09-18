@@ -25,3 +25,6 @@ stages:
             csmFile: '$(Build.SourcesDirectory)/azuredeploy.json'
             csmParametersFile: '$(Build.SourcesDirectory)/parameters.json'
             deploymentMode: 'Validation'
+        - task: PowerShell@2
+          inputs:
+            filePath: 'Install-Module Az.Resources -RequiredVersion 1.12.1-preview -AllowPrerelease -Force -Scope CurrentUser'
