@@ -34,6 +34,12 @@ stages:
             Inline: 'Install-Module Az.Resources -RequiredVersion 1.12 -AllowPrerelease -Force -Scope CurrentUser'
             azurePowerShellVersion: 'LatestVersion'
         - task: AzurePowerShell@5
+          inputs:
+            azureSubscription: 'VS benoit.sautiere(448fc812-f122-47fd-b6dd-08917bda2d30)'
+            ScriptType: 'FilePath'
+            ScriptPath: '$(Build.SourcesDirectory)/InstallPSModules.Ps1'
+            azurePowerShellVersion: 'LatestVersion'
+        - task: AzurePowerShell@5
           displayName: "Run Powershell script"
           inputs:
             azureSubscription: 'VS benoit.sautiere(448fc812-f122-47fd-b6dd-08917bda2d30)'
